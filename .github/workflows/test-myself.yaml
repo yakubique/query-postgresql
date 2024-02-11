@@ -1,0 +1,50 @@
+name: Test `query-postgresql` action
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PG_USER: postgres
+  PG_PWD: mypassword
+  PG_DB: postgres
+  PG_HOST: localhost
+  PG_PORT: 5432
+
+jobs:
+  test-query:
+    runs-on: [ "ubuntu-latest" ]
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: ${{ env.PG_PWD }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Simple query
+        id: query
+        uses: ./ # Uses an action in the root directory
+        with:
+          query: |
+            select true as result
+          host: ${{ env.PG_HOST }}
+          port: ${{ env.PG_PORT }}
+          username: ${{ env.PG_USER }}
+          password: ${{ env.PG_PWD }}
+          db: ${{ env.PG_DB }}
+          ssl: 'false'
+      - name: Test 1
+        run: |
+          echo "Expecting ['1.3.0']"
+          echo "${{ steps.query.outputs.result }}"
+          echo "${{ steps.query.outputs.count }}"
+          test "${{ steps.query.outputs.count }}" == "1"
+          test "${{ steps.query.outputs.result }}" == "[1.3.0]"

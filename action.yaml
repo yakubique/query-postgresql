@@ -1,0 +1,41 @@
+name: "Query to PostgreSQL"
+description: Make query to PostgreSQL and return JSON
+author: Vladimir Levin
+branding:
+  icon: code
+  color: purple
+inputs:
+  query:
+    description: 'SQL query'
+    required: true
+  host:
+    description: 'PostgreSQL host'
+    required: true
+  db:
+    description: 'PostgreSQL db'
+    required: true
+  port:
+    description: 'PostgreSQL port (default: 5432)'
+    required: true
+    default: '5432'
+  username:
+    description: 'PostgreSQL username'
+    required: true
+  password:
+    description: 'PostgreSQL password'
+    required: true
+  to_file:
+    description: "Save result to file (default: 'false')"
+  ssl:
+    description: "SSL enabled (default: 'true')"
+    default: 'true'
+  from_file:
+    description: "Read query from file (default: 'false')"
+outputs:
+  result: # id of output
+    description: PostgreSQL response
+  count:
+    description: Rows count
+runs:
+  using: 'node20'
+  main: 'action/index.js'
