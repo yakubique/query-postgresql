@@ -6,7 +6,7 @@ branding:
   color: purple
 inputs:
   query:
-    description: 'SQL query'
+    description: 'SQL query (query file if `from_file=true`)'
     required: true
   host:
     description: 'PostgreSQL host'
@@ -33,7 +33,7 @@ inputs:
     description: "Read query from file (default: 'false')"
 outputs:
   result: # id of output
-    description: PostgreSQL response
+    description: PostgreSQL response OR path to file
   count:
     description: Rows count
 runs:

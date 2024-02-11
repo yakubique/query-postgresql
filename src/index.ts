@@ -1,6 +1,8 @@
 import * as core from '@actions/core';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { ActionInputs, getInputs } from './io-helper';
 import { Client } from 'pg';
+import { temporaryFile } from "./utils";
 
 enum Outputs {
     result = 'result',
@@ -27,7 +29,11 @@ function setOutputs(response: any, log?: boolean) {
 
     try {
         const inputs: ActionInputs = getInputs();
-        const query = inputs.query;
+        let query = inputs.query;
+
+        if (inputs.fromFile) {
+            query = readFileSync(query, { encoding: 'utf8', flag: 'r' })
+        }
 
         client = new Client({
             user: inputs.username,
@@ -40,9 +46,15 @@ function setOutputs(response: any, log?: boolean) {
         await client.connect()
 
         const res = await client.query(query)
+        let resPath;
+
+        if (inputs.toFile) {
+            resPath = temporaryFile({ extension: 'json' });
+            writeFileSync(resPath, JSON.stringify(res.rows))
+        }
 
         setOutputs({
-            result: res.rows,
+            result: inputs.toFile ? resPath : res.rows,
             count: res.rowCount,
         })
 

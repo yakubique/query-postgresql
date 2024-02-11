@@ -23,6 +23,7 @@ export function isNotBlank(value: any): boolean {
 
 export function getBooleanInput(name: string, options?: InputOptions): boolean {
     const value = core.getInput(name, options);
+
     return isNotBlank(value) &&
         ['y', 'yes', 't', 'true', 'e', 'enable', 'enabled', 'on', 'ok', '1']
             .includes(value.trim().toLowerCase());
