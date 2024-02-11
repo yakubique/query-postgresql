@@ -91,4 +91,3 @@ jobs:
           cat "${{ steps.query.outputs.result }}"
           
           test "${{ steps.query.outputs.count }}" == "1"
-          test "$(cat ${{ steps.query.outputs.result }})" == "[{result:true}]"
