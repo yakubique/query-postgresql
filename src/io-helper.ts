@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { InputOptions } from '@actions/core';
+import { isBlank, getBooleanInput } from "@yakubique/atils/dist";
 
 enum Inputs {
     Query = 'query',
@@ -11,22 +11,6 @@ enum Inputs {
     ToFile = 'to_file',
     FromFile = 'from_file',
     SSL = 'ssl',
-}
-
-function isBlank(value: any): boolean {
-    return value === null || value === undefined || (value.length !== undefined && value.length === 0);
-}
-
-export function isNotBlank(value: any): boolean {
-    return value !== null && value !== undefined && (value.length === undefined || value.length > 0);
-}
-
-export function getBooleanInput(name: string, options?: InputOptions): boolean {
-    const value = core.getInput(name, options);
-
-    return isNotBlank(value) &&
-        ['y', 'yes', 't', 'true', 'e', 'enable', 'enabled', 'on', 'ok', '1']
-            .includes(value.trim().toLowerCase());
 }
 
 export interface ActionInputs {

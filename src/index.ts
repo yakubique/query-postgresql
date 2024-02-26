@@ -1,28 +1,15 @@
 import * as core from '@actions/core';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { ActionInputs, getInputs } from './io-helper';
 import { Client } from 'pg';
-import { temporaryFile } from "./utils";
+import { buildOutput, outputJson } from "@yakubique/atils/dist";
 
 enum Outputs {
     result = 'result',
     count = 'count'
 }
 
-function setOutputs(response: any, log?: boolean) {
-    let message = '';
-    for (const key in Outputs) {
-        const field: string = (Outputs as any)[key];
-        if (log) {
-            message += `\n  ${field}: ${JSON.stringify(response[field])}`;
-        }
-        core.setOutput(field, response[field]);
-    }
-
-    if (log) {
-        core.info('Outputs:' + message);
-    }
-}
+const setOutputs = buildOutput(Outputs);
 
 (async function run() {
     let client;
@@ -46,15 +33,9 @@ function setOutputs(response: any, log?: boolean) {
         await client.connect()
 
         const res = await client.query(query)
-        let resPath;
-
-        if (inputs.toFile) {
-            resPath = temporaryFile({ extension: 'json' });
-            writeFileSync(resPath, JSON.stringify(res.rows))
-        }
 
         setOutputs({
-            result: inputs.toFile ? resPath : res.rows,
+            result: outputJson(res.rows, inputs.toFile),
             count: res.rowCount,
         })
 

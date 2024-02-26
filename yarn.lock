@@ -68,6 +68,14 @@
   resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.38.1.tgz#13f08738111e1d9e8a22fd6141f3590e54d9a60e"
   integrity sha512-IBBb+iI2NLu4VQn3Vwldyi2QwaXt5+hTyh58ggAMoCGE6DJmPvwL3KPBWcJl1m9LYPChBLE980Jw+CS4Wokqxw==
 
+"@yakubique/atils@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@yakubique/atils/-/atils-0.0.1.tgz#0580cd9052cfb2072b652369c31c0d112d306231"
+  integrity sha512-7HCZ6D09qhpG+Fz7O/iWetdVydp4H86WlrQtg3AKFDUHzjSgKmEpxrdCA1HqeLjTcuB27OpLbkEnRI5/68RpHQ==
+  dependencies:
+    "@actions/core" "^1.10.1"
+    nanoid "^5.0.6"
+
 ansi-regex@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.1.tgz#082cb2c89c9fe8659a311a53bd6a4dc5301db304"
@@ -198,10 +206,10 @@ minimatch@^9.0.1:
   resolved "https://registry.yarnpkg.com/minipass/-/minipass-7.0.4.tgz#dbce03740f50a4786ba994c1fb908844d27b038c"
   integrity sha512-jYofLM5Dam9279rdkWzqHozUo4ybjdZmCsDHePy5V/PbBcVMiSZR97gmAy45aqi8CK1lG2ECd356FU86avfwUQ==
 
-nanoid@^5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-5.0.5.tgz#5112efb5c0caf4fc80680d66d303c65233a79fdd"
-  integrity sha512-/Veqm+QKsyMY3kqi4faWplnY1u+VuKO3dD2binyPIybP31DRO29bPF+1mszgLnrR2KqSLceFLBNw0zmvDzN1QQ==
+nanoid@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-5.0.6.tgz#7f99a033aa843e4dcf9778bdaec5eb02f4dc44d5"
+  integrity sha512-rRq0eMHoGZxlvaFOUdK1Ev83Bd1IgzzR+WJ3IbDJ7QOSdAxYjlurSPqFs9s4lJg29RT6nPwizFtJhQS6V5xgiA==
 
 obuf@~1.1.2:
   version "1.1.2"

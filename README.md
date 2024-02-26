@@ -7,7 +7,7 @@ Make query to PostgreSQL and return JSON
 For live examples, please see [actions](https://github.com/yakubique/query-postgresql/actions/workflows/test-myself.yaml)
 
 ```yaml
-uses: yakubique/query-postgresql@v1
+uses: yakubique/query-postgresql@v1.2
 with:
   query: |
     select true as result
