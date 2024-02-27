@@ -1,6 +1,6 @@
 {
   "name": "query-postgresql",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Make query to PostgreSQL and return JSON",
   "main": "action/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "action",
     "versions"
   ],
-  "author": "Vladimir <opa-oz>",
+  "author": "Vladimir <opa-oz> Levin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/yakubique/query-postgresql/issues"
